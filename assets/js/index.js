@@ -87,7 +87,7 @@
     async function loadCategories() {
         const { data: categories } = await supabase
             .from('issue_categories')
-            .select('name, slug')
+            .select('id, name, slug')
             .eq('is_active', true)
             .order('name');
 
