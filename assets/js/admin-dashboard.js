@@ -33,7 +33,7 @@
         .order('created_at', { ascending: false })
         .limit(5);
 
-    document.addEventListener('partialsLoaded', () => {
+    window.jv.onPartialsLoaded(() => {
         document.getElementById('adminPageHeading').textContent = 'Site Analytics';
         document.getElementById('adminContent').innerHTML = `
             <div class="admin-stat-grid">
@@ -65,5 +65,5 @@
                 </div>` : '<p class="empty-state">No issues waiting for review.</p>'}
             </div>
         `;
-    }, { once: true });
+    });
 })();

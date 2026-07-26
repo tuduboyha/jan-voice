@@ -426,5 +426,5 @@
         }
     });
 
-    document.addEventListener('partialsLoaded', loadIssue, { once: true });
+    window.jv.onPartialsLoaded(loadIssue);
 })();

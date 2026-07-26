@@ -302,7 +302,7 @@ window.jv = window.jv || {};
         });
     }
 
-    document.addEventListener('partialsLoaded', () => {
+    jv.onPartialsLoaded(() => {
         wireChrome();
         renderCategoriesMenu();
         renderAuthArea();

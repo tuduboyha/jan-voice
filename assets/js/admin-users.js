@@ -115,5 +115,5 @@
         });
     }
 
-    document.addEventListener('partialsLoaded', render, { once: true });
+    window.jv.onPartialsLoaded(render);
 })();

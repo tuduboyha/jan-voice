@@ -11,7 +11,7 @@ window.jv.initAdminPage = async function (pageKey) {
 
     const profile = await window.jv.getProfile(session.user.id);
 
-    document.addEventListener('partialsLoaded', async () => {
+    window.jv.onPartialsLoaded(async () => {
         document.getElementById('adminTopbarAvatar').src = window.jv.avatarUrl(profile?.avatar_url);
         document.getElementById('adminTopbarUsername').textContent = profile?.username || '';
 
@@ -32,7 +32,7 @@ window.jv.initAdminPage = async function (pageKey) {
             badge.hidden = false;
             badge.textContent = count;
         }
-    }, { once: true });
+    });
 
     return { session, profile };
 };

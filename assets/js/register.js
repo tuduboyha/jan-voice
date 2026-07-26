@@ -21,8 +21,7 @@
         document.getElementById('captchaQuestion').textContent = `What is ${a} + ${b}?`;
     }
 
-    document.addEventListener('partialsLoaded', newCaptcha, { once: true });
-    newCaptcha();
+    newCaptcha(); // captchaQuestion lives in the page body, not a partial — no need to wait
 
     document.getElementById('registerForm').addEventListener('submit', async (e) => {
         e.preventDefault();

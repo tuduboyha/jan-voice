@@ -13,6 +13,25 @@
     'use strict';
 
     const prefix = window.JV_PATH_PREFIX || '';
+    window.jv = window.jv || {};
+    window.jv._partialsLoaded = false;
+
+    /**
+     * Registers `callback` to run once partials are in the DOM. Unlike a
+     * plain `document.addEventListener('partialsLoaded', cb)`, this is
+     * safe to call from code that has already done some async work (e.g.
+     * awaited a Supabase query) before reaching this line — the
+     * 'partialsLoaded' event may have already fired and been missed by
+     * the time such code registers a listener. This checks a flag first
+     * and calls back immediately if the event already happened.
+     */
+    window.jv.onPartialsLoaded = function (callback) {
+        if (window.jv._partialsLoaded) {
+            callback();
+        } else {
+            document.addEventListener('partialsLoaded', callback, { once: true });
+        }
+    };
 
     async function includeAll() {
         const nodes = [...document.querySelectorAll('[data-include]')];
@@ -28,6 +47,7 @@
                 console.error('Failed to include ' + url, err);
             }
         }));
+        window.jv._partialsLoaded = true;
         document.dispatchEvent(new CustomEvent('partialsLoaded'));
     }
 

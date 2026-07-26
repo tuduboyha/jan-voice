@@ -103,7 +103,6 @@
         window.location.href = 'dashboard.html?tab=my-issues';
     });
 
-    document.addEventListener('partialsLoaded', newCaptcha, { once: true });
-    newCaptcha();
+    newCaptcha(); // captchaQuestion lives in the page body, not a partial — no need to wait
     loadCategories();
 })();
