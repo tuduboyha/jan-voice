@@ -70,7 +70,7 @@
             .order('support_count', { ascending: false })
             .limit(4);
         document.getElementById('mostSupportedList').innerHTML =
-            (data || []).map((i) => miniRow(i.title, i.slug, '🟢 ' + i.support_count)).join('');
+            (data || []).map((i) => miniRow(i.title, i.slug, window.jv.iconHtml('dot', 'jv-icon-support') + ' ' + i.support_count)).join('');
     }
 
     async function loadMostOpposed() {
@@ -81,7 +81,7 @@
             .order('oppose_count', { ascending: false })
             .limit(4);
         document.getElementById('mostOpposedList').innerHTML =
-            (data || []).map((i) => miniRow(i.title, i.slug, '🔴 ' + i.oppose_count)).join('');
+            (data || []).map((i) => miniRow(i.title, i.slug, window.jv.iconHtml('dot', 'jv-icon-oppose') + ' ' + i.oppose_count)).join('');
     }
 
     async function loadCategories() {
@@ -113,10 +113,10 @@
         if (!top.length) return;
 
         document.getElementById('leaderboardTeaserSection').hidden = false;
-        const medals = ['🥇', '🥈', '🥉'];
+        const medalClasses = ['jv-icon-gold', 'jv-icon-silver', 'jv-icon-bronze'];
         document.getElementById('leaderboardTeaser').innerHTML = top.map((u, i) => `
             <a href="profile.html?u=${encodeURIComponent(u.username)}" class="leaderboard-teaser-item glass-card">
-                <span class="leaderboard-rank">${medals[i] || '#' + (i + 1)}</span>
+                <span class="leaderboard-rank">${medalClasses[i] ? window.jv.iconHtml('medal', medalClasses[i]) : '#' + (i + 1)}</span>
                 <img src="${window.jv.avatarUrl(u.avatar_url)}" alt="">
                 <strong>@${window.jv.escapeHtml(u.username)}</strong>
                 <span class="leaderboard-score">${u.score} pts</span>

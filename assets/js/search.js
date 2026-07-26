@@ -90,8 +90,8 @@
         if (paginate) {
             const qs = new URLSearchParams({ q: term, category: categoryId, location, sort }).toString();
             let html = '';
-            if (page > 1) html += `<a class="btn btn-outline btn-sm" href="search.html?${qs}&page=${page - 1}">← Previous</a>`;
-            if (issues.length === perPage) html += `<a class="btn btn-outline btn-sm" href="search.html?${qs}&page=${page + 1}">Next →</a>`;
+            if (page > 1) html += `<a class="btn btn-outline btn-sm icon-label" href="search.html?${qs}&page=${page - 1}">${window.jv.iconHtml('chevron-left')} Previous</a>`;
+            if (issues.length === perPage) html += `<a class="btn btn-outline btn-sm icon-label" href="search.html?${qs}&page=${page + 1}">Next ${window.jv.iconHtml('chevron-right')}</a>`;
             document.getElementById('pagination').innerHTML = html;
         }
     }

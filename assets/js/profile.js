@@ -28,7 +28,8 @@
     if (profile.location) {
         const el = document.getElementById('profileLocation');
         el.hidden = false;
-        el.textContent = '📍 ' + profile.location;
+        el.innerHTML = window.jv.iconHtml('map-pin') + ' ' + window.jv.escapeHtml(profile.location);
+        el.classList.add('icon-label');
     }
     document.getElementById('profileJoined').textContent =
         'Joined ' + new Date(profile.created_at).toLocaleDateString('en-US', { month: 'short', year: 'numeric' });

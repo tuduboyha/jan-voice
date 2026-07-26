@@ -70,9 +70,9 @@
                     <div class="dash-row-meta">
                         <span class="status-badge status-${issue.status}">${issue.status[0].toUpperCase() + issue.status.slice(1)}</span>
                         <span>${window.jv.timeAgo(issue.created_at)}</span>
-                        <span>👁 ${issue.views}</span>
-                        <span>🟢 ${issue.support_count}</span>
-                        <span>🔴 ${issue.oppose_count}</span>
+                        <span class="icon-label">${window.jv.iconHtml('eye')} ${issue.views}</span>
+                        <span class="icon-label">${window.jv.iconHtml('dot', 'jv-icon-support')} ${issue.support_count}</span>
+                        <span class="icon-label">${window.jv.iconHtml('dot', 'jv-icon-oppose')} ${issue.oppose_count}</span>
                     </div>
                 </div>
             </div>`).join('') + '</div>';
@@ -95,7 +95,7 @@
                 <div>
                     <a href="issue.html?slug=${encodeURIComponent(op.issues.slug)}" class="dash-row-title">${window.jv.escapeHtml(op.issues.title)}</a>
                     <div class="dash-row-meta">
-                        <span class="badge badge-${op.side}">${op.side === 'support' ? '🟢 Support' : '🔴 Oppose'}</span>
+                        <span class="badge badge-${op.side} icon-label">${op.side === 'support' ? window.jv.iconHtml('dot', 'jv-icon-support') + ' Support' : window.jv.iconHtml('dot', 'jv-icon-oppose') + ' Oppose'}</span>
                         <span>${window.jv.timeAgo(op.created_at)}</span>
                     </div>
                 </div>
@@ -111,7 +111,7 @@
 
         const issues = (data || []).map((b) => b.issues).filter(Boolean);
         content.innerHTML = '<h2>Bookmarked Issues</h2><div class="issue-grid" id="bookmarksGrid"></div>' +
-            (issues.length ? '' : '<p class="empty-state">No bookmarks yet. Tap the 🔖 icon on any issue to save it here.</p>');
+            (issues.length ? '' : `<p class="empty-state icon-label">No bookmarks yet. Tap the ${window.jv.iconHtml('bookmark-filled')} icon on any issue to save it here.</p>`);
         if (issues.length) await window.jv.renderIssueGrid('#bookmarksGrid', issues);
     }
 

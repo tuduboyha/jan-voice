@@ -690,6 +690,29 @@ input:focus, textarea:focus, select:focus { border-color: #8b5cf6; }
 .leaderboard-teaser-item img { width: 52px; height: 52px; border-radius: 50%; object-fit: cover; }
 .leaderboard-teaser-item .leaderboard-score { font-size: 0.85rem; }
 
+/* ---------- Icons (replace emoji throughout) ---------- */
+.jv-icon {
+    width: 1em; height: 1em;
+    vertical-align: -0.15em;
+    display: inline-block;
+    flex-shrink: 0;
+}
+.jv-icon-lg { width: 1.3em; height: 1.3em; }
+.jv-icon-sm { width: 0.85em; height: 0.85em; }
+
+.jv-icon-support { color: var(--color-support); }
+.jv-icon-oppose { color: var(--color-oppose); }
+.jv-icon-gold { color: #d4af37; }
+.jv-icon-silver { color: #a8a9ad; }
+.jv-icon-bronze { color: #b08d57; }
+.jv-icon-muted { color: var(--text-muted); }
+.jv-icon-brand { color: #8b5cf6; }
+.jv-icon-danger { color: var(--color-oppose); }
+.jv-icon-warning { color: #f59e0b; }
+
+/* Buttons/links that pair an icon with text */
+.icon-label { display: inline-flex; align-items: center; gap: 5px; }
+
 /* ---------- Responsive ---------- */
 @media (max-width: 900px) {
     .dashboard-grid { grid-template-columns: 1fr; }

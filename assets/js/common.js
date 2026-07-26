@@ -160,10 +160,10 @@ window.jv = window.jv || {};
         area.innerHTML = `
             <a href="${prefix}create-issue.html" class="btn btn-gradient btn-sm">+ Post Issue</a>
             <a href="${prefix}dashboard.html">Dashboard</a>
-            ${isAdmin ? `<a href="${prefix}admin/index.html">🛠️ Admin</a>` : ''}
+            ${isAdmin ? `<a href="${prefix}admin/index.html" class="icon-label">${jv.iconHtml('wrench')} Admin</a>` : ''}
             <div class="notif-dropdown" id="notifDropdown">
                 <button type="button" class="notif-bell" id="notifBellBtn" aria-label="Notifications">
-                    🔔
+                    ${jv.iconHtml('bell')}
                     <span class="notif-badge" id="notifBadge" ${unreadCount ? '' : 'hidden'}>${unreadCount || ''}</span>
                 </button>
                 <div class="nav-dropdown-menu notif-menu" id="notifMenu">
@@ -198,7 +198,14 @@ window.jv = window.jv || {};
 
         let loaded = false;
 
-        const icons = { reply: '💬', like: '👍', support: '🟢', oppose: '🔴', mention: '📣', system: '🔔' };
+        const iconFor = (type) => ({
+            reply: jv.iconHtml('message-circle'),
+            like: jv.iconHtml('thumbs-up'),
+            support: jv.iconHtml('dot', 'jv-icon-support'),
+            oppose: jv.iconHtml('dot', 'jv-icon-oppose'),
+            mention: jv.iconHtml('megaphone'),
+            system: jv.iconHtml('bell'),
+        }[type] || jv.iconHtml('bell'));
 
         async function load() {
             const { data } = await jv.supabase
@@ -215,7 +222,7 @@ window.jv = window.jv || {};
 
             list.innerHTML = data.map((n) => `
                 <a class="notif-item${n.is_read ? '' : ' unread'}" data-id="${n.id}" href="${n.link ? prefix + n.link.replace(/^\//, '') : '#'}">
-                    <span class="notif-icon">${icons[n.type] || '🔔'}</span>
+                    <span class="notif-icon">${iconFor(n.type)}</span>
                     <span class="notif-body">
                         <span class="notif-message">${jv.escapeHtml(n.message)}</span>
                         <span class="notif-time">${jv.timeAgo(n.created_at)}</span>
@@ -263,17 +270,18 @@ window.jv = window.jv || {};
 
         const themeToggle = document.getElementById('themeToggle');
         const root = document.documentElement;
+        const themeIcon = (theme) => jv.iconHtml(theme === 'dark' ? 'sun' : 'moon');
         const savedTheme = localStorage.getItem('jv_theme');
         if (savedTheme) {
             root.setAttribute('data-theme', savedTheme);
-            if (themeToggle) themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+            if (themeToggle) themeToggle.innerHTML = themeIcon(savedTheme);
         }
         if (themeToggle) {
             themeToggle.addEventListener('click', () => {
                 const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
                 root.setAttribute('data-theme', next);
                 localStorage.setItem('jv_theme', next);
-                themeToggle.textContent = next === 'dark' ? '☀️' : '🌙';
+                themeToggle.innerHTML = themeIcon(next);
             });
         }
 
@@ -303,6 +311,7 @@ window.jv = window.jv || {};
     }
 
     jv.onPartialsLoaded(() => {
+        jv.hydrateIcons(document);
         wireChrome();
         renderCategoriesMenu();
         renderAuthArea();

@@ -36,16 +36,16 @@
 
     <div class="container issue-body-grid">
         <div class="issue-main-col">
-            <p class="pending-banner" id="pendingBanner" hidden>⏳ This issue is pending review and is only visible to you.</p>
+            <p class="pending-banner icon-label" id="pendingBanner" hidden><i data-icon="clock"></i> This issue is pending review and is only visible to you.</p>
 
             <div class="glass-card issue-description" id="issueDescription"></div>
             <div class="tag-list" id="tagList"></div>
             <p class="source-links" id="sourceLinks" hidden></p>
 
             <div class="issue-detail-actions">
-                <button type="button" class="icon-btn bookmark-btn" id="bookmarkBtn" aria-label="Bookmark">🏷️ Bookmark</button>
-                <button type="button" class="icon-btn share-btn" id="shareBtn" aria-label="Share">🔗 Share</button>
-                <button type="button" class="icon-btn report-issue-btn" id="reportIssueBtn" aria-label="Report">🚩 Report Issue</button>
+                <button type="button" class="icon-btn bookmark-btn icon-label" id="bookmarkBtn" data-labeled="true" aria-label="Bookmark"><i data-icon="tag"></i> Bookmark</button>
+                <button type="button" class="icon-btn share-btn icon-label" id="shareBtn" aria-label="Share"><i data-icon="link"></i> Share</button>
+                <button type="button" class="icon-btn report-issue-btn icon-label" id="reportIssueBtn" aria-label="Report"><i data-icon="flag"></i> Report Issue</button>
             </div>
 
             <div class="glass-card live-stats">
@@ -56,9 +56,9 @@
                     <div class="stat-pct oppose-pct" id="opposePct">0%</div>
                 </div>
                 <div class="stats-footer">
-                    <span>🟢 <span id="supportCount">0</span> Support</span>
-                    <span>🔴 <span id="opposeCount">0</span> Oppose</span>
-                    <span>👥 <span id="participantCount">0</span> Participants</span>
+                    <span class="icon-label"><i data-icon="dot" data-icon-class="jv-icon-support"></i> <span id="supportCount">0</span> Support</span>
+                    <span class="icon-label"><i data-icon="dot" data-icon-class="jv-icon-oppose"></i> <span id="opposeCount">0</span> Oppose</span>
+                    <span class="icon-label"><i data-icon="users"></i> <span id="participantCount">0</span> Participants</span>
                 </div>
             </div>
 
@@ -66,8 +66,8 @@
                 <h3>Choose your side</h3>
                 <p>You must pick a side before you can join the discussion. Your choice is permanent.</p>
                 <div class="stance-buttons" id="stanceButtons">
-                    <button type="button" class="stance-btn stance-support" data-side="support">🟢 I Support this Issue</button>
-                    <button type="button" class="stance-btn stance-oppose" data-side="oppose">🔴 I Oppose this Issue</button>
+                    <button type="button" class="stance-btn stance-support icon-label" data-side="support"><i data-icon="dot" data-icon-class="jv-icon-support"></i> I Support this Issue</button>
+                    <button type="button" class="stance-btn stance-oppose icon-label" data-side="oppose"><i data-icon="dot" data-icon-class="jv-icon-oppose"></i> I Oppose this Issue</button>
                 </div>
             </div>
 
@@ -88,7 +88,7 @@
                 <div class="discussion-columns" id="discussionColumns">
                     <div class="discussion-col discussion-col-support">
                         <div class="discussion-col-head">
-                            <h3>🟢 Support Arguments</h3>
+                            <h3 class="icon-label"><i data-icon="dot" data-icon-class="jv-icon-support"></i> Support Arguments</h3>
                             <span class="discussion-count" id="supportCommentCount">0 comments</span>
                         </div>
                         <div class="comment-composer" data-side="support" id="supportComposer" hidden>
@@ -103,7 +103,7 @@
 
                     <div class="discussion-col discussion-col-oppose">
                         <div class="discussion-col-head">
-                            <h3>🔴 Oppose Arguments</h3>
+                            <h3 class="icon-label"><i data-icon="dot" data-icon-class="jv-icon-oppose"></i> Oppose Arguments</h3>
                             <span class="discussion-count" id="opposeCommentCount">0 comments</span>
                         </div>
                         <div class="comment-composer" data-side="oppose" id="opposeComposer" hidden>
@@ -140,7 +140,7 @@
                 </div>
                 <p class="comment-text"></p>
                 <div class="comment-actions">
-                    <button type="button" class="like-btn" data-type="comment">👍 <span class="like-count">0</span></button>
+                    <button type="button" class="like-btn icon-label" data-type="comment"><i data-icon="thumbs-up"></i> <span class="like-count">0</span></button>
                     <button type="button" class="reply-toggle-btn">Reply</button>
                     <button type="button" class="report-btn" data-type="comment">Report</button>
                 </div>
@@ -164,7 +164,7 @@
             </div>
             <p class="comment-text"></p>
             <div class="comment-actions">
-                <button type="button" class="like-btn" data-type="reply">👍 <span class="like-count">0</span></button>
+                <button type="button" class="like-btn icon-label" data-type="reply"><i data-icon="thumbs-up"></i> <span class="like-count">0</span></button>
                 <button type="button" class="report-btn" data-type="reply">Report</button>
             </div>
         </div>
@@ -177,6 +177,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/icons.js"></script>
 <script src="assets/js/include.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/issue-card.js"></script>

@@ -46,7 +46,7 @@
                 <div class="glass-card admin-stat admin-stat-alert"><strong>${pendingReports || 0}</strong><span>Pending Reports</span></div>
             </div>
             <div class="glass-card admin-panel-card">
-                <div class="section-head"><h2>Issues Awaiting Approval</h2><a href="issues.html?status=pending" class="section-link">View all →</a></div>
+                <div class="section-head"><h2>Issues Awaiting Approval</h2><a href="issues.html?status=pending" class="section-link icon-label">View all ${window.jv.iconHtml('chevron-right')}</a></div>
                 ${recentPending && recentPending.length ? `
                 <div class="admin-table-wrap">
                     <table class="admin-table">

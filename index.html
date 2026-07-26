@@ -40,7 +40,7 @@
 
 <section class="section" id="trendingSection" hidden>
     <div class="container">
-        <div class="section-head"><h2>🔥 Trending Issues</h2></div>
+        <div class="section-head"><h2 class="icon-label"><i data-icon="flame" data-icon-class="jv-icon-warning"></i> Trending Issues</h2></div>
         <div class="issue-grid" id="trendingGrid"></div>
     </div>
 </section>
@@ -49,7 +49,7 @@
     <div class="container">
         <div class="section-head">
             <h2>Latest Issues</h2>
-            <a href="search.html" class="section-link">View all →</a>
+            <a href="search.html" class="section-link icon-label">View all <i data-icon="chevron-right"></i></a>
         </div>
         <div class="issue-grid" id="latestGrid"></div>
     </div>
@@ -59,15 +59,15 @@
     <div class="container">
         <div class="tri-columns">
             <div class="tri-col">
-                <h3>💬 Most Discussed</h3>
+                <h3 class="icon-label"><i data-icon="message-circle"></i> Most Discussed</h3>
                 <div id="mostDiscussedList"></div>
             </div>
             <div class="tri-col">
-                <h3>🟢 Most Supported</h3>
+                <h3 class="icon-label"><i data-icon="dot" data-icon-class="jv-icon-support"></i> Most Supported</h3>
                 <div id="mostSupportedList"></div>
             </div>
             <div class="tri-col">
-                <h3>🔴 Most Opposed</h3>
+                <h3 class="icon-label"><i data-icon="dot" data-icon-class="jv-icon-oppose"></i> Most Opposed</h3>
                 <div id="mostOpposedList"></div>
             </div>
         </div>
@@ -84,8 +84,8 @@
 <section class="section" id="leaderboardTeaserSection" hidden>
     <div class="container">
         <div class="section-head">
-            <h2>🏆 This Week's Top Voices</h2>
-            <a href="leaderboard.html" class="section-link">Full leaderboard →</a>
+            <h2 class="icon-label"><i data-icon="trophy" data-icon-class="jv-icon-gold"></i> This Week's Top Voices</h2>
+            <a href="leaderboard.html" class="section-link icon-label">Full leaderboard <i data-icon="chevron-right"></i></a>
         </div>
         <div class="leaderboard-teaser" id="leaderboardTeaser"></div>
     </div>
@@ -96,18 +96,18 @@
         <div>
             <h2>Community Guidelines</h2>
             <ul class="guidelines-list">
-                <li>🚫 No Hate Speech</li>
-                <li>🚫 No Abuse or Personal Attacks</li>
-                <li>🚫 No Fake News</li>
-                <li>🤝 Respect Every Opinion</li>
-                <li>📊 Evidence-Based Discussion</li>
+                <li class="icon-label"><i data-icon="ban" data-icon-class="jv-icon-danger"></i> No Hate Speech</li>
+                <li class="icon-label"><i data-icon="ban" data-icon-class="jv-icon-danger"></i> No Abuse or Personal Attacks</li>
+                <li class="icon-label"><i data-icon="ban" data-icon-class="jv-icon-danger"></i> No Fake News</li>
+                <li class="icon-label"><i data-icon="handshake" data-icon-class="jv-icon-brand"></i> Respect Every Opinion</li>
+                <li class="icon-label"><i data-icon="bar-chart" data-icon-class="jv-icon-brand"></i> Evidence-Based Discussion</li>
             </ul>
         </div>
         <div class="glass-card guidelines-card">
             <h3>How Jan Voice Works</h3>
             <ol class="how-it-works">
                 <li>Pick an issue, or raise a new one.</li>
-                <li>Choose your side — Support 🟢 or Oppose 🔴.</li>
+                <li>Choose your side — Support <i data-icon="dot" data-icon-class="jv-icon-support"></i> or Oppose <i data-icon="dot" data-icon-class="jv-icon-oppose"></i>.</li>
                 <li>Debate it out in a structured, two-column discussion.</li>
                 <li>Watch live stats show where the country actually stands.</li>
             </ol>
@@ -121,6 +121,7 @@
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script src="assets/js/config.js"></script>
 <script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/icons.js"></script>
 <script src="assets/js/include.js"></script>
 <script src="assets/js/common.js"></script>
 <script src="assets/js/issue-card.js"></script>

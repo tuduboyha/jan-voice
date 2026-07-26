@@ -36,6 +36,20 @@ window.jv = window.jv || {};
         return new Set((data || []).map((r) => r.issue_id));
     };
 
+    /**
+     * Sets a bookmark button's icon/label/class from its current state.
+     * `data-labeled="true"` on the button (set once, in markup) controls
+     * whether the text label shows alongside the icon — avoids fragile
+     * "guess from current text length" logic that broke once the icon
+     * became an <svg> instead of a plain emoji character.
+     */
+    jv.setBookmarkButtonState = function (btn, isBookmarked) {
+        btn.classList.toggle('bookmarked', isBookmarked);
+        const labeled = btn.getAttribute('data-labeled') === 'true';
+        const icon = jv.iconHtml(isBookmarked ? 'bookmark-filled' : 'tag');
+        btn.innerHTML = labeled ? `${icon} ${isBookmarked ? 'Bookmarked' : 'Bookmark'}` : icon;
+    };
+
     jv.renderIssueCard = function (issue, { commentCount = 0, isBookmarked = false } = {}) {
         const total = (issue.support_count || 0) + (issue.oppose_count || 0);
         const supportPct = total > 0 ? Math.round((issue.support_count / total) * 100) : 50;
@@ -62,14 +76,14 @@ window.jv = window.jv || {};
                 </div>
                 <div class="mini-vote-bar"><div class="mini-vote-fill" style="width: ${supportPct}%"></div></div>
                 <div class="issue-card-stats">
-                    <span class="stat-support">🟢 ${issue.support_count || 0}</span>
-                    <span class="stat-oppose">🔴 ${issue.oppose_count || 0}</span>
-                    <span class="stat-comments">💬 ${commentCount}</span>
+                    <span class="stat-support">${jv.iconHtml('dot', 'jv-icon-support')} ${issue.support_count || 0}</span>
+                    <span class="stat-oppose">${jv.iconHtml('dot', 'jv-icon-oppose')} ${issue.oppose_count || 0}</span>
+                    <span class="stat-comments">${jv.iconHtml('message-circle')} ${commentCount}</span>
                 </div>
                 <div class="issue-card-actions">
                     <a href="${prefix}issue.html?slug=${encodeURIComponent(issue.slug)}" class="btn btn-outline btn-sm">Read More</a>
-                    <button type="button" class="icon-btn bookmark-btn${isBookmarked ? ' bookmarked' : ''}" data-issue-id="${issue.id}" aria-label="Bookmark">${isBookmarked ? '🔖' : '🏷️'}</button>
-                    <button type="button" class="icon-btn share-btn" data-url="${window.location.origin}${prefix}issue.html?slug=${encodeURIComponent(issue.slug)}" aria-label="Share">🔗</button>
+                    <button type="button" class="icon-btn bookmark-btn${isBookmarked ? ' bookmarked' : ''}" data-issue-id="${issue.id}" data-labeled="false" aria-label="Bookmark">${jv.iconHtml(isBookmarked ? 'bookmark-filled' : 'tag')}</button>
+                    <button type="button" class="icon-btn share-btn" data-url="${window.location.origin}${prefix}issue.html?slug=${encodeURIComponent(issue.slug)}" aria-label="Share">${jv.iconHtml('link')}</button>
                 </div>
             </div>
         </article>`;
@@ -110,13 +124,11 @@ window.jv = window.jv || {};
 
             if (existing) {
                 await jv.supabase.from('bookmarks').delete().eq('id', existing.id);
-                bookmarkBtn.classList.remove('bookmarked');
-                bookmarkBtn.textContent = bookmarkBtn.textContent.trim().length > 2 ? '🏷️ Bookmark' : '🏷️';
+                jv.setBookmarkButtonState(bookmarkBtn, false);
                 jv.showToast('Bookmark removed.', 'success');
             } else {
                 await jv.supabase.from('bookmarks').insert({ user_id: session.user.id, issue_id: issueId });
-                bookmarkBtn.classList.add('bookmarked');
-                bookmarkBtn.textContent = bookmarkBtn.textContent.trim().length > 2 ? '🔖 Bookmarked' : '🔖';
+                jv.setBookmarkButtonState(bookmarkBtn, true);
                 jv.showToast('Issue bookmarked!', 'success');
             }
         }

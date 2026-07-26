@@ -91,8 +91,8 @@
                     </table>
                 </div>
                 <div class="pagination">
-                    ${page > 1 ? `<a class="btn btn-outline btn-sm" href="?search=${encodeURIComponent(search)}&role=${role}&status=${status}&page=${page - 1}">← Previous</a>` : ''}
-                    ${page * perPage < (total || 0) ? `<a class="btn btn-outline btn-sm" href="?search=${encodeURIComponent(search)}&role=${role}&status=${status}&page=${page + 1}">Next →</a>` : ''}
+                    ${page > 1 ? `<a class="btn btn-outline btn-sm icon-label" href="?search=${encodeURIComponent(search)}&role=${role}&status=${status}&page=${page - 1}">${window.jv.iconHtml('chevron-left')} Previous</a>` : ''}
+                    ${page * perPage < (total || 0) ? `<a class="btn btn-outline btn-sm icon-label" href="?search=${encodeURIComponent(search)}&role=${role}&status=${status}&page=${page + 1}">Next ${window.jv.iconHtml('chevron-right')}</a>` : ''}
                 </div>` : '<p class="empty-state">No users match these filters.</p>'}
             </div>
         `;

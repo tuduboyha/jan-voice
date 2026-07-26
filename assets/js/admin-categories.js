@@ -51,7 +51,7 @@
                 <form class="stacked-form" id="createForm">
                     <div class="form-row">
                         <label>Name <input type="text" name="name" required minlength="2" maxlength="100" placeholder="e.g. Sports"></label>
-                        <label>Icon (emoji or keyword) <input type="text" name="icon" maxlength="50" placeholder="e.g. ⚽"></label>
+                        <label>Icon keyword <input type="text" name="icon" maxlength="50" placeholder="e.g. football"></label>
                     </div>
                     <label>Description <input type="text" name="description" maxlength="255" placeholder="Short description shown on category pages"></label>
                     <div class="form-actions"><button type="submit" class="btn btn-gradient btn-sm">Add Category</button></div>

@@ -61,7 +61,7 @@
         const content = document.getElementById('adminContent');
 
         if (!reports || !reports.length) {
-            content.innerHTML = '<div class="glass-card admin-panel-card"><p class="empty-state">No pending reports. The community is behaving. 🎉</p></div>';
+            content.innerHTML = `<div class="glass-card admin-panel-card"><p class="empty-state icon-label">${window.jv.iconHtml('check-circle')} No pending reports. The community is behaving.</p></div>`;
             return;
         }
 

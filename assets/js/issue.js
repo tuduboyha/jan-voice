@@ -102,8 +102,8 @@
         document.getElementById('issueMeta').innerHTML = `
             <span>${authorLabel}</span><span>&middot;</span>
             <span>${new Date(issue.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}</span>
-            <span>&middot;</span><span>${issue.views || 0} views</span>
-            ${issue.location ? `<span>&middot;</span><span>📍 ${window.jv.escapeHtml(issue.location)}</span>` : ''}
+            <span>&middot;</span><span class="icon-label">${window.jv.iconHtml('eye')} ${issue.views || 0} views</span>
+            ${issue.location ? `<span>&middot;</span><span class="icon-label">${window.jv.iconHtml('map-pin')} ${window.jv.escapeHtml(issue.location)}</span>` : ''}
         `;
 
         document.getElementById('issueDescription').textContent = issue.description;
@@ -135,8 +135,7 @@
         if (!session) return;
         const { data } = await supabase.from('bookmarks').select('id').eq('user_id', session.user.id).eq('issue_id', issue.id).maybeSingle();
         if (data) {
-            btn.classList.add('bookmarked');
-            btn.textContent = '🔖 Bookmarked';
+            window.jv.setBookmarkButtonState(btn, true);
         }
     }
 
@@ -196,8 +195,9 @@
         gate.hidden = true;
         banner.hidden = false;
         const label = document.getElementById('userSideLabel');
-        label.textContent = userSide === 'support' ? '🟢 Support' : '🔴 Oppose';
-        label.className = 'side-label-' + userSide;
+        label.innerHTML = window.jv.iconHtml('dot', userSide === 'support' ? 'jv-icon-support' : 'jv-icon-oppose') +
+            (userSide === 'support' ? ' Support' : ' Oppose');
+        label.className = 'side-label-' + userSide + ' icon-label';
 
         document.getElementById('supportComposer').hidden = userSide !== 'support';
         document.getElementById('opposeComposer').hidden = userSide !== 'oppose';
@@ -301,14 +301,16 @@
         node.querySelector('.comment-avatar').src = window.jv.avatarUrl(comment.profiles?.avatar_url);
         node.querySelector('.comment-username').textContent = comment.profiles?.username || 'Unknown';
         const badge = node.querySelector('.badge');
-        badge.classList.add('badge-' + comment.side);
-        badge.textContent = comment.side === 'support' ? '🟢 Support' : '🔴 Oppose';
+        badge.classList.add('badge-' + comment.side, 'icon-label');
+        badge.innerHTML = window.jv.iconHtml('dot', comment.side === 'support' ? 'jv-icon-support' : 'jv-icon-oppose') +
+            (comment.side === 'support' ? ' Support' : ' Oppose');
         node.querySelector('.comment-time').textContent = window.jv.timeAgo(comment.created_at);
         node.querySelector('.comment-text').textContent = comment.body;
         node.querySelector('.like-btn').setAttribute('data-id', comment.id);
         node.querySelector('.like-count').textContent = comment.like_count || 0;
         node.querySelector('.report-btn').setAttribute('data-id', comment.id);
         node.querySelector('.reply-form').setAttribute('data-comment-id', comment.id);
+        window.jv.hydrateIcons(node);
 
         const repliesList = node.querySelector('.replies-list');
         replies.forEach((r) => repliesList.appendChild(buildReplyNode(r)));
@@ -323,6 +325,7 @@
         node.querySelector('.comment-avatar').src = window.jv.avatarUrl(reply.profiles?.avatar_url);
         node.querySelector('.comment-username').textContent = reply.profiles?.username || 'Unknown';
         node.querySelector('.comment-time').textContent = window.jv.timeAgo(reply.created_at);
+        window.jv.hydrateIcons(node);
         node.querySelector('.comment-text').textContent = reply.body;
         node.querySelector('.like-btn').setAttribute('data-id', reply.id);
         node.querySelector('.like-count').textContent = reply.like_count || 0;

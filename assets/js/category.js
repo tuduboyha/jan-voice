@@ -53,7 +53,7 @@
 
     const pagination = document.getElementById('pagination');
     let html = '';
-    if (page > 1) html += `<a class="btn btn-outline btn-sm" href="category.html?slug=${slug}&page=${page - 1}">← Previous</a>`;
-    if (list.length === perPage) html += `<a class="btn btn-outline btn-sm" href="category.html?slug=${slug}&page=${page + 1}">Next →</a>`;
+    if (page > 1) html += `<a class="btn btn-outline btn-sm icon-label" href="category.html?slug=${slug}&page=${page - 1}">${window.jv.iconHtml('chevron-left')} Previous</a>`;
+    if (list.length === perPage) html += `<a class="btn btn-outline btn-sm icon-label" href="category.html?slug=${slug}&page=${page + 1}">Next ${window.jv.iconHtml('chevron-right')}</a>`;
     pagination.innerHTML = html;
 })();

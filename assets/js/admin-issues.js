@@ -85,11 +85,11 @@
                         <tbody>
                             ${issues.map((i) => `
                                 <tr>
-                                    <td><a href="../issue.html?slug=${encodeURIComponent(i.slug)}" target="_blank">${window.jv.escapeHtml(i.title)}</a>${i.is_featured ? ' ⭐' : ''}</td>
+                                    <td><a href="../issue.html?slug=${encodeURIComponent(i.slug)}" target="_blank">${window.jv.escapeHtml(i.title)}</a>${i.is_featured ? ' ' + window.jv.iconHtml('star', 'jv-icon-gold') : ''}</td>
                                     <td>${i.is_anonymous ? 'Anonymous' : window.jv.escapeHtml(i.profiles?.username || '—')}</td>
                                     <td>${window.jv.escapeHtml(i.issue_categories?.name || '—')}</td>
                                     <td><span class="status-badge status-${i.status}">${i.status[0].toUpperCase() + i.status.slice(1)}</span></td>
-                                    <td>🟢 ${i.support_count} / 🔴 ${i.oppose_count}</td>
+                                    <td class="icon-label">${window.jv.iconHtml('dot', 'jv-icon-support')} ${i.support_count} / ${window.jv.iconHtml('dot', 'jv-icon-oppose')} ${i.oppose_count}</td>
                                     <td>${window.jv.timeAgo(i.created_at)}</td>
                                     <td class="admin-actions">
                                         ${i.status !== 'approved' ? `<button class="btn btn-success btn-sm" data-action="approve" data-id="${i.id}">Approve</button>` : ''}
@@ -102,8 +102,8 @@
                     </table>
                 </div>
                 <div class="pagination">
-                    ${page > 1 ? `<a class="btn btn-outline btn-sm" href="?status=${status}&category=${categoryId}&search=${encodeURIComponent(search)}&page=${page - 1}">← Previous</a>` : ''}
-                    ${page * perPage < total ? `<a class="btn btn-outline btn-sm" href="?status=${status}&category=${categoryId}&search=${encodeURIComponent(search)}&page=${page + 1}">Next →</a>` : ''}
+                    ${page > 1 ? `<a class="btn btn-outline btn-sm icon-label" href="?status=${status}&category=${categoryId}&search=${encodeURIComponent(search)}&page=${page - 1}">${window.jv.iconHtml('chevron-left')} Previous</a>` : ''}
+                    ${page * perPage < total ? `<a class="btn btn-outline btn-sm icon-label" href="?status=${status}&category=${categoryId}&search=${encodeURIComponent(search)}&page=${page + 1}">Next ${window.jv.iconHtml('chevron-right')}</a>` : ''}
                 </div>` : '<p class="empty-state">No issues match these filters.</p>'}
             </div>
         `;

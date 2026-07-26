@@ -15,8 +15,9 @@
 
     function showConfigWarning() {
         const banner = document.createElement('div');
-        banner.textContent =
-            '⚠️ Supabase is not configured yet — edit assets/js/config.js with your project URL and anon key. ' +
+        const warningIcon = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width:1em;height:1em;vertical-align:-0.125em;margin-right:0.35em;"><path d="M10.3 3.86 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.86a2 2 0 0 0-3.4 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>';
+        banner.innerHTML = warningIcon +
+            'Supabase is not configured yet — edit assets/js/config.js with your project URL and anon key. ' +
             '(See the setup steps in README.md.)';
         Object.assign(banner.style, {
             position: 'fixed', top: '0', left: '0', right: '0', zIndex: '9999',
