@@ -357,7 +357,14 @@ language plpgsql
 security definer
 as $$
 begin
-    if (new.role != old.role or new.status != old.status) and not public.is_admin() then
+    -- auth.uid() is only non-null when the change came through the
+    -- client API (PostgREST) as a logged-in user. A NULL auth.uid()
+    -- means this is a direct database action (the SQL Editor, a
+    -- migration, the Supabase dashboard) — inherently trusted, and
+    -- also how you bootstrap your very first admin account.
+    if (new.role != old.role or new.status != old.status)
+        and auth.uid() is not null
+        and not public.is_admin() then
         raise exception 'Only admins may change role or status.';
     end if;
     return new;
