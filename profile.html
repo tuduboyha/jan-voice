@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Profile — Jan Voice</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<div id="notFoundState" class="section" hidden>
+    <div class="container"><h1>User not found</h1></div>
+</div>
+
+<div id="profileContent" hidden>
+<section class="section profile-hero">
+    <div class="container profile-hero-inner">
+        <img class="profile-avatar" id="profileAvatar" src="" alt="">
+        <div>
+            <h1 id="profileUsername"></h1>
+            <p class="profile-bio" id="profileBio" hidden></p>
+            <div class="profile-meta">
+                <span id="profileLocation" hidden></span>
+                <span id="profileJoined"></span>
+            </div>
+            <div class="badge-list" id="profileBadges"></div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="profile-stats-grid">
+            <div class="glass-card profile-stat"><strong id="statPosts">0</strong><span>Issues Posted</span></div>
+            <div class="glass-card profile-stat"><strong id="statOpinions">0</strong><span>Total Opinions</span></div>
+            <div class="glass-card profile-stat"><strong class="side-label-support" id="statSupportPct">0%</strong><span>Support Rate</span></div>
+            <div class="glass-card profile-stat"><strong class="side-label-oppose" id="statOpposePct">0%</strong><span>Oppose Rate</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="section-head"><h2 id="issuesHeading">Issues</h2></div>
+        <div class="issue-grid" id="issueGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>This user hasn't published any public issues yet.</p>
+    </div>
+</section>
+</div>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/issue-card.js"></script>
+<script src="assets/js/profile.js"></script>
+</body>
+</html>

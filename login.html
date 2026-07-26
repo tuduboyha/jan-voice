@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Login — Jan Voice</title>
+<meta name="description" content="Log in to Jan Voice to support, oppose, and discuss the issues that matter to you.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="auth-section">
+    <div class="container auth-container">
+        <div class="auth-card glass-card">
+            <h1>Welcome Back</h1>
+            <p class="auth-subtitle">Log in to support, oppose, and discuss the issues that matter to you.</p>
+
+            <form class="auth-form" id="loginForm">
+                <label>Email
+                    <input type="email" name="email" required placeholder="you@example.com">
+                </label>
+                <label>Password
+                    <input type="password" name="password" required placeholder="Your password">
+                </label>
+                <div class="auth-links-row">
+                    <a href="forgot-password.html">Forgot password?</a>
+                </div>
+                <button type="submit" class="btn btn-gradient btn-block">Log In</button>
+            </form>
+
+            <p class="auth-switch">New to Jan Voice? <a href="register.html">Create an account</a></p>
+        </div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/login.js"></script>
+</body>
+</html>

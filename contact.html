@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact Us — Jan Voice</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main class="site-main">
+<section class="section narrow-section">
+    <div class="container narrow-container">
+        <h1>Contact Us</h1>
+        <p class="hero-subtitle">Questions, feedback, or a moderation concern? Send us a message.</p>
+        <div class="glass-card form-card">
+            <form class="stacked-form" id="contactForm">
+                <label>Your Name <input type="text" name="name" required></label>
+                <label>Your Email <input type="email" name="email" required></label>
+                <label>Message <textarea name="message" rows="6" minlength="10" required placeholder="How can we help?"></textarea></label>
+                <div class="form-actions"><button type="submit" class="btn btn-gradient">Send Message</button></div>
+            </form>
+        </div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script>
+document.addEventListener('partialsLoaded', async () => {
+    const session = await window.jv.getSession();
+    if (session) {
+        document.querySelector('[name="email"]').value = session.user.email;
+        const profile = await window.jv.getProfile(session.user.id);
+        if (profile) document.querySelector('[name="name"]').value = profile.username;
+    }
+});
+document.getElementById('contactForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    // No backend mailbox is wired up yet — this is a placeholder
+    // acknowledgement. Wire a Supabase Edge Function or a form
+    // service (e.g. Formspree) here to actually deliver messages.
+    window.jv.showToast("Thanks for reaching out! Our team will get back to you soon.", 'success');
+    e.target.reset();
+});
+</script>
+</body>
+</html>

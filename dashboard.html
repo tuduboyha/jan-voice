@@ -1,0 +1,50 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dashboard — Jan Voice</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="section">
+    <div class="container dashboard-grid">
+        <aside class="dashboard-sidebar glass-card">
+            <div class="dashboard-user">
+                <img id="dashAvatar" src="" alt="">
+                <div>
+                    <strong id="dashUsername"></strong>
+                    <span id="dashEmail"></span>
+                </div>
+            </div>
+            <nav class="dashboard-nav">
+                <a href="#" data-tab="my-issues">📝 My Issues</a>
+                <a href="#" data-tab="my-opinions">🗳️ My Opinions</a>
+                <a href="#" data-tab="bookmarks">🔖 Bookmarks</a>
+                <a href="#" data-tab="notifications">🔔 Notifications</a>
+                <a href="#" data-tab="settings">⚙️ Profile Settings</a>
+                <a href="#" data-tab="security">🔒 Security</a>
+                <a href="#" id="dashLogoutLink">🚪 Logout</a>
+            </nav>
+        </aside>
+
+        <div class="dashboard-content" id="dashboardContent">
+            <p>Loading...</p>
+        </div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/issue-card.js"></script>
+<script src="assets/js/dashboard.js"></script>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Issue — Jan Voice</title>
+<meta name="description" id="pageDescription" content="">
+<link rel="canonical" href="" id="canonicalLink">
+<meta property="og:title" content="" id="ogTitle">
+<meta property="og:description" content="" id="ogDescription">
+<meta property="og:type" content="article">
+<meta property="og:url" content="" id="ogUrl">
+<meta property="og:image" content="" id="ogImage">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="" id="twitterTitle">
+<meta name="twitter:description" content="" id="twitterDescription">
+<meta name="twitter:image" content="" id="twitterImage">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<div id="notFoundState" class="section" hidden>
+    <div class="container"><h1>Issue not found</h1><p>This issue may have been removed or is still pending review.</p></div>
+</div>
+
+<article class="issue-detail" id="issueDetail" hidden>
+    <div class="issue-hero" id="issueHero">
+        <div class="container">
+            <span class="badge badge-category" id="issueCategoryBadge" hidden></span>
+            <h1 class="issue-title" id="issueTitle"></h1>
+            <div class="issue-meta" id="issueMeta"></div>
+        </div>
+    </div>
+
+    <div class="container issue-body-grid">
+        <div class="issue-main-col">
+            <p class="pending-banner" id="pendingBanner" hidden>⏳ This issue is pending review and is only visible to you.</p>
+
+            <div class="glass-card issue-description" id="issueDescription"></div>
+            <div class="tag-list" id="tagList"></div>
+            <p class="source-links" id="sourceLinks" hidden></p>
+
+            <div class="issue-detail-actions">
+                <button type="button" class="icon-btn bookmark-btn" id="bookmarkBtn" aria-label="Bookmark">🏷️ Bookmark</button>
+                <button type="button" class="icon-btn share-btn" id="shareBtn" aria-label="Share">🔗 Share</button>
+                <button type="button" class="icon-btn report-issue-btn" id="reportIssueBtn" aria-label="Report">🚩 Report Issue</button>
+            </div>
+
+            <div class="glass-card live-stats">
+                <h3>Live Verdict</h3>
+                <div class="stats-row">
+                    <div class="stat-pct support-pct" id="supportPct">0%</div>
+                    <div class="vote-progress-bar"><div class="vote-progress-fill" id="voteProgressFill" style="width:0%"></div></div>
+                    <div class="stat-pct oppose-pct" id="opposePct">0%</div>
+                </div>
+                <div class="stats-footer">
+                    <span>🟢 <span id="supportCount">0</span> Support</span>
+                    <span>🔴 <span id="opposeCount">0</span> Oppose</span>
+                    <span>👥 <span id="participantCount">0</span> Participants</span>
+                </div>
+            </div>
+
+            <div class="glass-card stance-gate" id="stanceGate" hidden>
+                <h3>Choose your side</h3>
+                <p>You must pick a side before you can join the discussion. Your choice is permanent.</p>
+                <div class="stance-buttons" id="stanceButtons">
+                    <button type="button" class="stance-btn stance-support" data-side="support">🟢 I Support this Issue</button>
+                    <button type="button" class="stance-btn stance-oppose" data-side="oppose">🔴 I Oppose this Issue</button>
+                </div>
+            </div>
+
+            <div class="stance-confirmed-banner glass-card" id="stanceConfirmedBanner" hidden>
+                You are participating as <strong id="userSideLabel"></strong>
+            </div>
+
+            <div class="discussion-section">
+                <div class="discussion-head">
+                    <h2>Discussion</h2>
+                    <select id="sortSelect">
+                        <option value="newest">Newest</option>
+                        <option value="oldest">Oldest</option>
+                        <option value="liked">Most Liked</option>
+                    </select>
+                </div>
+
+                <div class="discussion-columns" id="discussionColumns">
+                    <div class="discussion-col discussion-col-support">
+                        <div class="discussion-col-head">
+                            <h3>🟢 Support Arguments</h3>
+                            <span class="discussion-count" id="supportCommentCount">0 comments</span>
+                        </div>
+                        <div class="comment-composer" data-side="support" id="supportComposer" hidden>
+                            <form class="comment-form" data-side="support">
+                                <textarea name="body" rows="3" maxlength="3000" placeholder="Share your Support argument..." required></textarea>
+                                <button type="submit" class="btn btn-gradient btn-sm">Post Comment</button>
+                            </form>
+                        </div>
+                        <p class="composer-locked-note" id="supportLockedNote" hidden></p>
+                        <div class="comments-list" id="supportComments"></div>
+                    </div>
+
+                    <div class="discussion-col discussion-col-oppose">
+                        <div class="discussion-col-head">
+                            <h3>🔴 Oppose Arguments</h3>
+                            <span class="discussion-count" id="opposeCommentCount">0 comments</span>
+                        </div>
+                        <div class="comment-composer" data-side="oppose" id="opposeComposer" hidden>
+                            <form class="comment-form" data-side="oppose">
+                                <textarea name="body" rows="3" maxlength="3000" placeholder="Share your Oppose argument..." required></textarea>
+                                <button type="submit" class="btn btn-gradient btn-sm">Post Comment</button>
+                            </form>
+                        </div>
+                        <p class="composer-locked-note" id="opposeLockedNote" hidden></p>
+                        <div class="comments-list" id="opposeComments"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <aside class="issue-side-col">
+            <div class="glass-card related-issues" id="relatedIssuesBox" hidden>
+                <h3>Related Issues</h3>
+                <div id="relatedIssuesList"></div>
+            </div>
+        </aside>
+    </div>
+</article>
+
+<template id="commentTemplate">
+    <div class="comment">
+        <div class="comment-main">
+            <img class="comment-avatar" src="" alt="">
+            <div class="comment-body">
+                <div class="comment-head">
+                    <span class="comment-username"></span>
+                    <span class="badge"></span>
+                    <span class="comment-time"></span>
+                </div>
+                <p class="comment-text"></p>
+                <div class="comment-actions">
+                    <button type="button" class="like-btn" data-type="comment">👍 <span class="like-count">0</span></button>
+                    <button type="button" class="reply-toggle-btn">Reply</button>
+                    <button type="button" class="report-btn" data-type="comment">Report</button>
+                </div>
+                <form class="reply-form" hidden>
+                    <textarea name="body" rows="2" maxlength="1000" placeholder="Write a reply..." required></textarea>
+                    <button type="submit" class="btn btn-gradient btn-sm">Post Reply</button>
+                </form>
+                <div class="replies-list"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<template id="replyTemplate">
+    <div class="reply">
+        <img class="comment-avatar comment-avatar-sm" src="" alt="">
+        <div class="comment-body">
+            <div class="comment-head">
+                <span class="comment-username"></span>
+                <span class="comment-time"></span>
+            </div>
+            <p class="comment-text"></p>
+            <div class="comment-actions">
+                <button type="button" class="like-btn" data-type="reply">👍 <span class="like-count">0</span></button>
+                <button type="button" class="report-btn" data-type="reply">Report</button>
+            </div>
+        </div>
+    </div>
+</template>
+
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/issue-card.js"></script>
+<script src="assets/js/issue.js"></script>
+</body>
+</html>

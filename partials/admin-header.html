@@ -1,0 +1,35 @@
+<div class="admin-shell">
+    <aside class="admin-sidebar">
+        <a href="index.html" class="brand admin-brand" data-root-link>
+            <span class="brand-mark">JV</span>
+            <span class="brand-text">Admin</span>
+        </a>
+        <nav class="admin-nav">
+            <a href="index.html" data-root-link data-admin-page="dashboard">📊 Dashboard</a>
+            <a href="issues.html" data-root-link data-admin-page="issues">📝 Manage Issues</a>
+            <a href="users.html" data-root-link data-admin-page="users">👥 Manage Users</a>
+            <a href="categories.html" data-root-link data-admin-page="categories">🗂️ Categories</a>
+            <a href="reports.html" data-root-link data-admin-page="reports">
+                🚩 Reports <span class="notif-badge admin-nav-badge" id="adminReportBadge" hidden></span>
+            </a>
+        </nav>
+        <div class="admin-sidebar-footer">
+            <a href="../index.html">← Back to Site</a>
+            <a href="#" id="adminLogoutLink">Logout</a>
+        </div>
+    </aside>
+
+    <div class="admin-main">
+        <header class="admin-topbar">
+            <h1 id="adminPageHeading">Dashboard</h1>
+            <div class="admin-topbar-user">
+                <img id="adminTopbarAvatar" src="" alt="">
+                <span id="adminTopbarUsername"></span>
+            </div>
+        </header>
+
+        <div id="toastContainer" class="toast-container"></div>
+
+        <main class="admin-content" id="adminContent"></main>
+    </div>
+</div>

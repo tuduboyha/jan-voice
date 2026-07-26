@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Weekly Leaderboard — Jan Voice</title>
+<meta name="description" content="The most active citizens on Jan Voice this week.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="section leaderboard-hero">
+    <div class="container">
+        <h1>🏆 Weekly Leaderboard</h1>
+        <p class="hero-subtitle">Ranked by activity over the last 7 days — issues raised (×5), comments &amp; replies (×2), opinions cast (×1), and likes received (×1).</p>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container narrow-container">
+        <div class="leaderboard-list" id="leaderboardList"></div>
+        <p class="empty-state" id="emptyState" hidden>No activity yet this week. Be the first to raise an issue or cast an opinion!</p>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/leaderboard-data.js"></script>
+<script>
+(async function () {
+    const top = await window.jv.weeklyLeaderboard(20);
+    if (!top.length) { document.getElementById('emptyState').hidden = false; return; }
+    const medals = ['🥇', '🥈', '🥉'];
+    document.getElementById('leaderboardList').innerHTML = top.map((u, i) => `
+        <a href="profile.html?u=${encodeURIComponent(u.username)}" class="glass-card leaderboard-row ${i < 3 ? 'leaderboard-top' : ''}">
+            <span class="leaderboard-rank">${medals[i] || '#' + (i + 1)}</span>
+            <img class="leaderboard-avatar" src="${window.jv.avatarUrl(u.avatar_url)}" alt="">
+            <div class="leaderboard-info">
+                <strong>@${window.jv.escapeHtml(u.username)}</strong>
+                <span class="leaderboard-breakdown">📝 ${u.issues} issues &middot; 💬 ${u.comments} comments &middot; 🗳️ ${u.opinions} opinions &middot; 👍 ${u.likes} likes</span>
+            </div>
+            <span class="leaderboard-score">${u.score} pts</span>
+        </a>
+    `).join('');
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Search Issues — Jan Voice</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="section search-hero">
+    <div class="container">
+        <h1>Search Issues</h1>
+        <form class="search-form" id="searchForm" autocomplete="off">
+            <div class="search-input-wrap">
+                <input type="text" id="searchInput" placeholder="Search issues, categories, users, or tags...">
+                <div class="search-suggestions" id="searchSuggestions" hidden></div>
+            </div>
+            <button type="submit" class="btn btn-gradient">Search</button>
+        </form>
+
+        <div class="filter-bar">
+            <form class="filter-form" id="filterForm">
+                <select name="category" id="categorySelect"><option value="">All Categories</option></select>
+                <input type="text" name="location" id="locationInput" placeholder="Location">
+                <select name="sort" id="sortSelect">
+                    <option value="latest">Newest</option>
+                    <option value="oldest">Oldest</option>
+                    <option value="trending">Trending</option>
+                    <option value="most_discussed">Most Discussed</option>
+                    <option value="most_supported">Most Supported</option>
+                    <option value="most_opposed">Most Opposed</option>
+                </select>
+                <button type="submit" class="btn btn-outline btn-sm">Apply Filters</button>
+            </form>
+        </div>
+        <p class="filter-hint" id="tagHint" hidden></p>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="issue-grid" id="issueGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>No issues matched your search. Try a different term or filter.</p>
+        <div class="pagination" id="pagination"></div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/issue-card.js"></script>
+<script src="assets/js/search.js"></script>
+</body>
+</html>

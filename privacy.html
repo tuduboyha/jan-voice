@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Privacy Policy — Jan Voice</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+<main class="site-main">
+<section class="section narrow-section">
+    <div class="container narrow-container">
+        <h1>Privacy Policy</h1>
+        <p class="hero-subtitle" id="lastUpdated"></p>
+        <div class="glass-card static-card">
+            <h3>1. Information We Collect</h3>
+            <p>We collect the information you provide when creating an account (username, email, password), when posting content (issues, comments, opinions), and basic technical data used for security.</p>
+            <h3>2. How We Use Your Information</h3>
+            <p>Your data is used to operate the platform: authenticating you, displaying your posts and profile, sending you notifications, and moderating content for community safety.</p>
+            <h3>3. What We Never Do</h3>
+            <p>We do not sell your personal data to third parties. Passwords are managed entirely by Supabase Auth using industry-standard hashing and are never visible to us.</p>
+            <h3>4. Your Choices</h3>
+            <p>You can post anonymously on any issue, update or delete your profile information from your dashboard, and request account deletion by contacting us.</p>
+            <h3>5. Data Storage</h3>
+            <p>Application data is stored with Supabase (PostgreSQL). Sessions are managed via secure tokens handled entirely by Supabase Auth in your browser.</p>
+            <h3>6. Contact</h3>
+            <p>Questions about this policy can be sent via our <a href="contact.html">Contact page</a>.</p>
+        </div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script>document.getElementById('lastUpdated').textContent = 'Last updated: ' + new Date().toLocaleDateString('en-US', { month: 'long', year: 'numeric' });</script>
+</body>
+</html>

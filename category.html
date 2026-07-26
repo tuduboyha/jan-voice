@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Category — Jan Voice</title>
+<meta name="description" id="pageDescription" content="Explore issues on Jan Voice.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="section category-hero">
+    <div class="container">
+        <span class="badge badge-category" id="categoryBadge"></span>
+        <h1 id="categoryTitle">Loading...</h1>
+        <p class="hero-subtitle" id="categoryDescription"></p>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="issue-grid" id="issueGrid"></div>
+        <p class="empty-state" id="emptyState" hidden>No issues have been raised in this category yet. <a href="create-issue.html">Be the first to raise one.</a></p>
+        <div class="pagination" id="pagination"></div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/issue-card.js"></script>
+<script src="assets/js/category.js"></script>
+</body>
+</html>

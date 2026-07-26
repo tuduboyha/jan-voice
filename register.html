@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Create Account — Jan Voice</title>
+<meta name="description" content="Join Jan Voice to raise issues, take a side, and debate it out.">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="auth-section">
+    <div class="container auth-container">
+        <div class="auth-card glass-card">
+            <h1>Join Jan Voice</h1>
+            <p class="auth-subtitle">Every issue matters. Every voice counts. Create your account to start participating.</p>
+
+            <form class="auth-form" id="registerForm">
+                <label>Username
+                    <input type="text" name="username" required minlength="3" maxlength="50" pattern="[a-zA-Z0-9_]+" placeholder="janvoice_user">
+                </label>
+                <label>Email
+                    <input type="email" name="email" required placeholder="you@example.com">
+                </label>
+                <label>Password
+                    <input type="password" name="password" required minlength="8" placeholder="At least 8 characters">
+                </label>
+                <label>Confirm Password
+                    <input type="password" name="confirm_password" required minlength="8" placeholder="Re-enter password">
+                </label>
+                <label id="captchaLabel">Security Check: <span id="captchaQuestion"></span>
+                    <input type="number" name="captcha_answer" id="captchaAnswer" required placeholder="Your answer">
+                </label>
+                <button type="submit" class="btn btn-gradient btn-block">Create Account</button>
+            </form>
+
+            <p class="auth-switch">Already have an account? <a href="login.html">Log in</a></p>
+        </div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/register.js"></script>
+</body>
+</html>

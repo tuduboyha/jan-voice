@@ -1,0 +1,71 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Raise an Issue — Jan Voice</title>
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+<section class="section">
+    <div class="container narrow-container">
+        <div class="glass-card form-card">
+            <h1>Raise a Social Issue</h1>
+            <p class="auth-subtitle">Put a real issue in front of the country. Be specific, be factual, and let people choose a side.</p>
+
+            <form class="stacked-form" id="createIssueForm">
+                <label>Title *
+                    <input type="text" name="title" required minlength="10" maxlength="255" placeholder="e.g. EVM should be abolished">
+                </label>
+                <label>Short Summary *
+                    <textarea name="summary" required minlength="20" maxlength="500" rows="2" placeholder="One or two sentences summarizing the issue"></textarea>
+                </label>
+                <label>Full Description *
+                    <textarea name="description" required minlength="50" rows="8" placeholder="Explain the issue in detail, with context and reasoning"></textarea>
+                </label>
+                <div class="form-row">
+                    <label>Category
+                        <select name="category_id" id="categorySelect"><option value="">Select a category</option></select>
+                    </label>
+                    <label>Location (Optional)
+                        <input type="text" name="location" placeholder="e.g. New Delhi, India">
+                    </label>
+                </div>
+                <label>Tags (comma-separated)
+                    <input type="text" name="tags" placeholder="education, reform, policy">
+                </label>
+                <label>Source Links (Optional)
+                    <input type="text" name="source_links" placeholder="https://example.com/article">
+                </label>
+                <label>Featured Image
+                    <input type="file" name="cover_image" id="coverImageInput" accept="image/jpeg,image/png,image/webp">
+                </label>
+                <label class="checkbox-row">
+                    <input type="checkbox" name="is_anonymous" value="1">
+                    Post anonymously
+                </label>
+                <label id="captchaLabel">Security Check: <span id="captchaQuestion"></span>
+                    <input type="number" name="captcha_answer" id="captchaAnswer" required placeholder="Your answer">
+                </label>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-gradient btn-lg">Submit for Review</button>
+                </div>
+                <p class="form-hint">Every issue is reviewed by our moderation team before going live.</p>
+            </form>
+        </div>
+    </div>
+</section>
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/create-issue.js"></script>
+</body>
+</html>

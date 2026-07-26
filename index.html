@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jan Voice — Every Issue Matters. Every Voice Counts.</title>
+<meta name="description" content="Jan Voice is where citizens raise real social issues, take a side, and debate it out — Support vs Oppose, side by side, evidence over noise.">
+<link rel="canonical" href="">
+<meta property="og:title" content="Jan Voice — Every Issue Matters. Every Voice Counts.">
+<meta property="og:description" content="Raise real social issues, take a side, and debate it out.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/images/default-cover.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Jan Voice">
+<meta name="twitter:description" content="Every Issue Matters. Every Voice Counts.">
+<meta name="twitter:image" content="assets/images/default-cover.png">
+<link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main class="site-main">
+
+<section class="hero">
+    <div class="container hero-inner">
+        <h1 class="hero-title">Every Issue Matters.<br><span class="text-gradient">Every Voice Counts.</span></h1>
+        <p class="hero-subtitle">Jan Voice is where citizens raise real social issues, take a side, and debate it out — Support vs Oppose, side by side, evidence over noise.</p>
+        <div class="hero-actions">
+            <a href="create-issue.html" class="btn btn-gradient btn-lg">Raise an Issue</a>
+            <a href="search.html" class="btn btn-outline btn-lg">Explore Issues</a>
+        </div>
+        <div class="hero-stats">
+            <div class="hero-stat"><strong id="statIssues">0</strong><span>Issues</span></div>
+            <div class="hero-stat"><strong id="statUsers">0</strong><span>Citizens</span></div>
+            <div class="hero-stat"><strong id="statOpinions">0</strong><span>Opinions Cast</span></div>
+            <div class="hero-stat"><strong id="statComments">0</strong><span>Arguments Made</span></div>
+        </div>
+    </div>
+</section>
+
+<section class="section" id="trendingSection" hidden>
+    <div class="container">
+        <div class="section-head"><h2>🔥 Trending Issues</h2></div>
+        <div class="issue-grid" id="trendingGrid"></div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-head">
+            <h2>Latest Issues</h2>
+            <a href="search.html" class="section-link">View all →</a>
+        </div>
+        <div class="issue-grid" id="latestGrid"></div>
+    </div>
+</section>
+
+<section class="section">
+    <div class="container">
+        <div class="tri-columns">
+            <div class="tri-col">
+                <h3>💬 Most Discussed</h3>
+                <div id="mostDiscussedList"></div>
+            </div>
+            <div class="tri-col">
+                <h3>🟢 Most Supported</h3>
+                <div id="mostSupportedList"></div>
+            </div>
+            <div class="tri-col">
+                <h3>🔴 Most Opposed</h3>
+                <div id="mostOpposedList"></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-head"><h2>Browse by Category</h2></div>
+        <div class="category-grid" id="categoryGrid"></div>
+    </div>
+</section>
+
+<section class="section" id="leaderboardTeaserSection" hidden>
+    <div class="container">
+        <div class="section-head">
+            <h2>🏆 This Week's Top Voices</h2>
+            <a href="leaderboard.html" class="section-link">Full leaderboard →</a>
+        </div>
+        <div class="leaderboard-teaser" id="leaderboardTeaser"></div>
+    </div>
+</section>
+
+<section class="section guidelines-section">
+    <div class="container guidelines-grid">
+        <div>
+            <h2>Community Guidelines</h2>
+            <ul class="guidelines-list">
+                <li>🚫 No Hate Speech</li>
+                <li>🚫 No Abuse or Personal Attacks</li>
+                <li>🚫 No Fake News</li>
+                <li>🤝 Respect Every Opinion</li>
+                <li>📊 Evidence-Based Discussion</li>
+            </ul>
+        </div>
+        <div class="glass-card guidelines-card">
+            <h3>How Jan Voice Works</h3>
+            <ol class="how-it-works">
+                <li>Pick an issue, or raise a new one.</li>
+                <li>Choose your side — Support 🟢 or Oppose 🔴.</li>
+                <li>Debate it out in a structured, two-column discussion.</li>
+                <li>Watch live stats show where the country actually stands.</li>
+            </ol>
+        </div>
+    </div>
+</section>
+
+</main>
+<div data-include="partials/footer.html"></div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="assets/js/config.js"></script>
+<script src="assets/js/supabase-client.js"></script>
+<script src="assets/js/include.js"></script>
+<script src="assets/js/common.js"></script>
+<script src="assets/js/issue-card.js"></script>
+<script src="assets/js/leaderboard-data.js"></script>
+<script src="assets/js/index.js"></script>
+</body>
+</html>
