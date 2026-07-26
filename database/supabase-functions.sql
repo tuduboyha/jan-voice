@@ -571,14 +571,16 @@ as $$
     like_counts as (
         select user_id, sum(cnt) as cnt from (
             select c.user_id, count(*) as cnt
-            from public.likes l, since
+            from public.likes l
             join public.comments c on c.id = l.likeable_id and l.likeable_type = 'comment'
+            cross join since
             where l.created_at >= since.cutoff
             group by c.user_id
             union all
             select r.user_id, count(*) as cnt
-            from public.likes l, since
+            from public.likes l
             join public.replies r on r.id = l.likeable_id and l.likeable_type = 'reply'
+            cross join since
             where l.created_at >= since.cutoff
             group by r.user_id
         ) x group by user_id
