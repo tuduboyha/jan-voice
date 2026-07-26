@@ -82,10 +82,17 @@ create policy "admins delete images" on public.issue_images
 create policy "opinions are public (needed for live stats)" on public.opinions
     for select using (true);
 
+-- Same visibility rule as the issues SELECT policy: you can cast a
+-- stance on any issue you're allowed to see — approved, or your own
+-- (even while still pending), or any if you're an admin.
 create policy "authenticated users cast one opinion per issue" on public.opinions
     for insert with check (
         user_id = auth.uid()
-        and exists (select 1 from public.issues where id = issue_id and status = 'approved')
+        and exists (
+            select 1 from public.issues
+            where id = issue_id
+            and (status = 'approved' or user_id = auth.uid() or public.is_admin())
+        )
     );
 
 -- ---------------- comments ----------------
